@@ -16,7 +16,7 @@ and the following python libraries:
 
 # Quick start
 
-To calculate scores for particular 3D structure runinng locally installed DSSP (`-l`) and results vizualization (`-v`):
+To calculate scores for a particular 3D structure with the locally installed DSSP (-l) and visualize the results (-v), you should execute the following command:
 `python run.py -i "4GAW_A" -l -v`
 
 # User manual
