@@ -13,3 +13,7 @@ and the following python libraries:
 * pandas
 * numpy
 * requests
+
+# Reporting Bugs and Feature Requests
+Please use the GitHub issue tracker to report bugs or suggest features.
+
