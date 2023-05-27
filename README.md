@@ -16,20 +16,23 @@ and the following python libraries:
 
 # Quick start
 
-To calculate scores for a specific chain of the 3D structure (e.g. the A chain of 4GAW), execute the following command, which includes automatic downloading of the 3D structure from the PDB server (`-i`), running the locally installed DSSP (`-l`), and visualizing the results (`-v`):
+To calculate scores for a specific chain of the 3D structure (e.g. the A chain of 4GAW), execute the following command, which includes automatic downloading of the 3D structure from the PDB server (`-i`), selecting the chain (`-c`), running the locally installed DSSP (`-l`), and visualizing the results (`-v`):
 
 ```python run.py -i 4GAW -c A -l -v```
 
-For batch execution of the same command on multiple structures, you can submit a text file with a list of structures and chains, with one entry per line:
+For batch execution of the same command on multiple structures, you can submit a text file with a list of structures and chains, with each entry in two columns (PDB ID and Chain ID) per line:
 
-```python run.py -i "ID_list.txt" -l -v```
+```python run.py -i "PDBID_ChainID_list.txt" -l -v```
 
 To apply the method for locally saved PDF file or multiple PDB files in folder, you should use `-f` option:
 
 ```python run.py -f 4GAW.pdb -c A -l -v```
 
-Results 
+Batch option is also available for locally saved PDB-files also in two-columns format file (Path to PDB file and Chain ID).
 
+```python run.py -i "PDBpath_ChainID_list.txt" -l -v```
+
+The calculation results are accessible in the "results" directory within a folder named after the corresponding PDB ID. The calculated scores in a concise format can be obtained in the file <PDB_ID>.scores.txt.
 
 # User manual
 
