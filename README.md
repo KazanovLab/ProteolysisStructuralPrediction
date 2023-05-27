@@ -18,11 +18,18 @@ and the following python libraries:
 
 To calculate scores for a specific chain of the 3D structure (e.g. the A chain of 4GAW), execute the following command, which includes automatic downloading of the 3D structure from the PDB server (`-i`), running the locally installed DSSP (`-l`), and visualizing the results (`-v`):
 
-```python run.py -i "4GAW_A" -l -v```
+```python run.py -i 4GAW -c A -l -v```
 
 For batch execution of the same command on multiple structures, you can submit a text file with a list of structures and chains, with one entry per line:
 
 ```python run.py -i "ID_list.txt" -l -v```
+
+To apply the method for locally saved PDF file or multiple PDB files in folder, you should use `-f` option:
+
+```python run.py -f 4GAW.pdb -c A -l -v```
+
+Results 
+
 
 # User manual
 
