@@ -36,6 +36,8 @@ The calculation results are accessible in the `results` directory within a folde
 
 # User manual
 
+All calculations are performed using the main script `run.py`. To obtain a full list of options, you can execute the `python run.py --help` command.
+
 # Reporting Bugs and Feature Requests
 Please use the [GitHub issue tracker](https://github.com/KazanovLab/ProteolysisStructuralPrediction/issues) to report bugs or suggest features.
 
