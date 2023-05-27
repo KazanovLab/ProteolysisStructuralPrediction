@@ -32,7 +32,7 @@ Batch option is also available for locally saved PDB-files also in two-columns f
 
 ```python run.py -i "PDBpath_ChainID_list.txt" -l -v```
 
-The calculation results are accessible in the "results" directory within a folder named after the corresponding PDB ID. The calculated scores in a concise format can be obtained in the file <PDB_ID>.scores.txt.
+The calculation results are accessible in the `results` directory within a folder named after the corresponding PDB ID. The calculated scores in a concise format can be obtained in the file `<PDB_ID>.scores.txt`.
 
 # User manual
 
