@@ -1,5 +1,5 @@
 # About
-This method estimates the structural susceptibility of protein regions to proteolysis based on the known three-dimensional structure of a protein.
+This method estimates the structural susceptibility of protein regions to proteolysis based on the known three-dimensional structure of a protein. The method calculates a numerical score, ranging from 0 to 1, for each peptide bond, representing its structural susceptibility to proteolysis. A score of 1 indicates a high structural susceptibility to proteolysis, while a score of 0 indicates a low structural susceptibility to proteolysis.
 
 # Dependencies
 For the correct work of the method, you need to install the following software:
@@ -13,6 +13,11 @@ and the following python libraries:
 * pandas
 * numpy
 * requests
+
+# Quick start
+
+To calculate scores for particular 3D structure runinng locally installed DSSP (`-l`) and results vizualization (`-v`):
+`python run.py -i "4GAW_A" -l -v`
 
 # User manual
 
