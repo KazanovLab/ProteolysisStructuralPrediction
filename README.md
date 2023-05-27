@@ -20,6 +20,10 @@ To calculate scores for a specific chain of the 3D structure (e.g. the A chain o
 
 ```python run.py -i "4GAW_A" -l -v```
 
+For batch execution of the same command on multiple structures, you can submit a text file with a list of structures and chains, with one entry per line:
+
+```python run.py -i "ID_list.txt" -l -v```
+
 # User manual
 
 # Reporting Bugs and Feature Requests
