@@ -15,5 +15,5 @@ and the following python libraries:
 * requests
 
 # Reporting Bugs and Feature Requests
-Please use the GitHub issue tracker to report bugs or suggest features.
+Please use the [GitHub issue tracker](https://github.com/KazanovLab/ProteolysisStructuralPrediction/issues) to report bugs or suggest features.
 
