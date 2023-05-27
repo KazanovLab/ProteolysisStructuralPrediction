@@ -14,6 +14,10 @@ and the following python libraries:
 * numpy
 * requests
 
+# User manual
+
 # Reporting Bugs and Feature Requests
 Please use the [GitHub issue tracker](https://github.com/KazanovLab/ProteolysisStructuralPrediction/issues) to report bugs or suggest features.
 
+# Citing
+Evgenii V. Matveev, Vyacheslav V. Safronov, Gennady V. Ponomarev and Marat D. Kazanov. "Predicting structural susceptibility of proteins to proteolytic processing". (submitted)
