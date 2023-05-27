@@ -17,6 +17,7 @@ and the following python libraries:
 # Quick start
 
 To calculate scores for a specific 3D structure, execute the following command, which includes automatic downloading of the 3D structure from the PDB server (-i), running the locally installed DSSP (-l), and visualizing the results (-v):
+
 ```python run.py -i "4GAW_A" -l -v```
 
 # User manual
