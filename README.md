@@ -28,7 +28,7 @@ To apply the method for locally saved PDF file or multiple PDB files in folder, 
 
 ```python run.py -f 4GAW.pdb -c A -l -v```
 
-Batch option is also available for locally saved PDB-files also in two-columns format file (Path to PDB file and Chain ID).
+The batch option is also available for locally saved PDB files listed in a two-column text file, with the first column representing the path to the PDB file and the second column representing the Chain ID.
 
 ```python run.py -i "PDBpath_ChainID_list.txt" -l -v```
 
@@ -38,7 +38,7 @@ The calculation results are accessible in the `results` directory within a folde
 
 All calculations are performed using the main script `run.py`. To obtain a full list of options, you can execute the `python run.py --help` command.
 
-* `-i` - PDB ID of the input 3D structure for downloading from PDB server or the path to the batch file.
+* `-i` - PDB ID of the input 3D structure for downloading from PDB server or the path to the batch file. The batch file is the two-columns text file (`.txt` extention) with 
 * `-f` - path to the local PDB file or the path to the batch file.
 
 # Reporting Bugs and Feature Requests
