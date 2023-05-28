@@ -48,6 +48,8 @@ All calculations are performed using the main script `run.py`. To obtain a full 
 
 * `-v` (optional) - generate a visual representation of the 3D structure in Chimera with color-mapped scores. The colors reflecting the scores of structural susceptibility to proteolysis are distributed from blue (low susceptibility) through red (moderate susceptibility) to yellow (high susceptibility).
 
+After completing the calculations, the main script creates a directory named `results` if it does not already exist, and places the final and intermediate output files under the folder with the PDB ID name.
+
 # Reporting Bugs and Feature Requests
 Please use the [GitHub issue tracker](https://github.com/KazanovLab/ProteolysisStructuralPrediction/issues) to report bugs or suggest features.
 
