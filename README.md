@@ -46,7 +46,7 @@ All calculations are performed using the main script `run.py`. To obtain a full 
 
 * `-l` (optional) - run DSSP locally. It is highly recommended to install DSSP locally due to potential issues with the connection to the DSSP server.
 
-* `-v` (optional) - generate a visual representation of the 3D structure in Chimera with color-mapped scores. 
+* `-v` (optional) - generate a visual representation of the 3D structure in Chimera with color-mapped scores. The colors reflecting the scores of structural susceptibility to proteolysis are distributed from blue (low susceptibility) through red (moderate susceptibility) to yellow (high susceptibility).
 
 # Reporting Bugs and Feature Requests
 Please use the [GitHub issue tracker](https://github.com/KazanovLab/ProteolysisStructuralPrediction/issues) to report bugs or suggest features.
