@@ -38,8 +38,15 @@ The calculation results are accessible in the `results` directory within a folde
 
 All calculations are performed using the main script `run.py`. To obtain a full list of options, you can execute the `python run.py --help` command.
 
-* `-i` - PDB ID of the input 3D structure for downloading from PDB server or the path to the batch file. The batch file is the two-columns text file (`.txt` extention) with 
-* `-f` - path to the local PDB file or the path to the batch file.
+* `-i` - PDB ID of the input 3D structure for downloading from PDB server or the path to the batch file. The batch file is a text file with a two-column format (.txt extension), where the first column contains the PDB ID and the second column contains the Chain ID.
+
+* `-f` - path to the local PDB file or the path to the batch file. The batch file in this case also consists of two columns: the first column contains the path to the PDB file, and the second column contains the Chain ID.
+
+* `-c` - chain ID
+
+* `-l` - run DSSP locally
+
+* `-v` - generate a visual representation of the 3D structure with color-mapped scores in Chimera format.
 
 # Reporting Bugs and Feature Requests
 Please use the [GitHub issue tracker](https://github.com/KazanovLab/ProteolysisStructuralPrediction/issues) to report bugs or suggest features.
