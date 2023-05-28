@@ -5,7 +5,7 @@ This method estimates the structural susceptibility of protein regions to proteo
 For the correct work of the method, you need to install the following software:
 * [Clustal Omega](http://www.clustal.org/omega/)
 * [UCSF Chimera](https://github.com/insilichem/pychimera/blob/master/docs/install.rst)
-* [DSSP](https://github.com/PDB-REDO/dssp) (optional, but highly recommended)
+* [DSSP](https://github.com/PDB-REDO/dssp) (optional, but strongly recommended)
 
 and the following python libraries:
 
@@ -44,7 +44,7 @@ All calculations are performed using the main script `run.py`. To obtain a full 
 
 * `-c` - chain ID
 
-* `-l` (optional) - run DSSP locally. It is highly recommended to install DSSP locally due to potential issues with the connection to the DSSP server.
+* `-l` (optional) - run DSSP locally. It is strongly recommended to install DSSP locally due to potential issues with the connection to the DSSP server.
 
 * `-v` (optional) - generate a visual representation of the 3D structure in Chimera with color-mapped scores. The colors reflecting the scores of structural susceptibility to proteolysis are distributed from blue (low susceptibility) through red (moderate susceptibility) to yellow (high susceptibility).
 
