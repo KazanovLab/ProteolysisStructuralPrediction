@@ -7,7 +7,7 @@ from chimera import runCommand as run
 
 ''' Set paths '''
 main_path = os.getcwd()
-StructureSet_path = os.path.join(main_path, "structures")
+StructureSet_path = os.path.join(main_path, "results")
 structure_list = [i for i in os.listdir(StructureSet_path) if '.' not in i]
         
 def main():
@@ -28,7 +28,7 @@ def main():
             score_df = pd.read_csv(score_file, dtype={"structure":str, "chain":str, "num_AA":str, "AA":str, "is_cut":int})
             structure_chain = score_df["structure"].unique()[0]
             
-            score_column = [i for i in score_df.columns if 'StrModel_predict' in i][0]
+            score_column = [i for i in score_df.columns if 'PredictedProbability' in i][0]
             score_df[score_column + '_attribute'] = '\t:' + score_df["num_AA"] + '.' + score_df["chain"] + '\t' + score_df[score_column].map(str)
                 
             attribute_file = os.path.join(score_path, structure_name + '.txt')

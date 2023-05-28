@@ -9,8 +9,11 @@ import time
 
 ''' Set paths '''
 main_path = os.getcwd()
-StructureSet_path = os.path.join(main_path, "structures")
+StructureSet_path = os.path.join(main_path, "results")
 structure_list = [i for i in os.listdir(StructureSet_path) if '.' not in i]
+
+''' Logging '''
+log_file = os.path.join(StructureSet_path, "report.log")
 
 def normalise(dataset, name_input_vector, name_output_vector):
     min_value = np.min(dataset[name_input_vector])
@@ -31,7 +34,7 @@ def main():
         feature_files = glob.glob(os.path.join(feature_path, '*_final.csv'))
         for feature_file in feature_files:
             structure_name = '_'.join(feature_file.split('/')[-1].split('.')[0].split('_')[:-1])
-            print(f"{num} --- {structure_name}")
+            #print(f"{num} --- {structure_name}")
             num += 1
             
             feature_df = pd.read_csv(feature_file)
@@ -46,25 +49,29 @@ def main():
             
             ''' ACC (structure) '''
             normalise(feature_df, "ACC", "ACC_N_chain")
-            if True in np.unique(feature_df["ACC_N_chain"].isna()):
-                warnings.append(f"{structure_name} - uncorrected normalisation of Solvent accessibility (ACC)!")
-                continue
+            if np.unique(feature_df["ACC_N_chain"].isna()) == [True]:
+                warnings.append(f"{structure_name} - uncorrected normalisation of Solvent accessibility (ACC is constant)!\n******** WARNING ********\nPredictions may be uncorrected!")
+                feature_df["ACC_N_chain"].fillna(0, inplace=True)
+                #continue
             ''' B-factor / AlphaFold prediction score '''
             if 'AF-' in structure_name:
                 normalise(feature_df, "AF_score", "AF_score_N_chain")
-                if True in np.unique(feature_df["AF_score_N_chain"].isna()):
-                    warnings.append(f"{structure_name} - uncorrected normalisation of AlphaFold prediction score!")
-                    continue
+                if np.unique(feature_df["AF_score_N_chain"].isna()) == [True]:
+                    warnings.append(f"{structure_name} - uncorrected normalisation of AlphaFold prediction score because of values are same!\n******** WARNING ********\nPredictions may be uncorrected!")
+                    feature_df["AF_score_N_chain"].fillna(0, inplace=True)
+                    #continue
             else:
                 normalise(feature_df, "bfac", "bfac_N_chain")
-                if True in np.unique(feature_df["bfac_N_chain"].isna()):
-                    warnings.append(f"{structure_name} - uncorrected normalisation of B-factor!")
-                    continue
+                if np.unique(feature_df["bfac_N_chain"].isna()) == [True]:
+                    warnings.append(f"{structure_name} - uncorrected normalisation of B-factor! B-factor is constant!\n******** WARNING ********\nPredictions may be uncorrected!")
+                    feature_df["bfac_N_chain"].fillna(0, inplace=True)
+                    #continue
             ''' Loop length '''
             normalise(feature_df, "len_loop", "len_loop_N_chain")
-            if True in np.unique(feature_df["len_loop_N_chain"].isna()):
-                warnings.append(f"{structure_name} - uncorrected normalisation of Loop length!")
-                continue
+            if np.unique(feature_df["len_loop_N_chain"].isna()) == [True]:
+                warnings.append(f"{structure_name} - uncorrected normalisation of Loop length because of values are same. Structure has only one type of secondary structure!\n******** WARNING ********\nPredictions may be uncorrected!")
+                feature_df["len_loop_N_chain"].fillna(0, inplace=True)
+                #continue
 
             ''' Secondary structure type coding '''
             feature_df = pd.concat([pd.get_dummies(feature_df, prefix='SS', columns=['SS_type']), feature_df["SS_type"]], axis=1)
@@ -79,8 +86,12 @@ def main():
             feature_df.to_csv(os.path.join(feature_path, feature_file.split('.csv')[0] + '_norm.csv'), index=False)
     
     if len(warnings) > 0:
-        with open(os.path.join(StructureSet_path, f"UncorrectedNormalisation.txt"), 'w') as file:
-            file.write('\n'.join(warnings))
+        if os.path.exists(log_file):
+            with open(log_file, 'a') as file:
+                file.write('Uncorrected normalisation\n' + '\n'.join(warnings) + '\n')
+        else:
+            with open(log_file, 'w') as file:
+                file.write('Uncorrected normalisation\n' + '\n'.join(warnings) + '\n')
                 
 ''' Launch script '''                
 if __name__ == "__main__":

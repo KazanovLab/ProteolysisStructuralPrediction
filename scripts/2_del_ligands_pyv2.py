@@ -5,7 +5,7 @@ import glob
 
 ''' Set paths '''
 main_path = os.getcwd()
-StructureSet_path = os.path.join(main_path, "structures")
+StructureSet_path = os.path.join(main_path, "results")
 structure_list = [i for i in os.listdir(StructureSet_path) if '.' not in i]
 
 c = 0
@@ -15,7 +15,7 @@ for structure in sorted(structure_list):
     
     for structure_file in structure_files:
         c += 1
-        print "{0} --- {1}".format(c, structure_file.split('.')[0].split('/')[-1])
+        #print "{0} --- {1}".format(c, structure_file.split('.')[0].split('/')[-1])
         
         ''' Chimera Run '''
         run("open {}".format(structure_file))
