@@ -4,8 +4,8 @@ This method estimates the structural susceptibility of protein regions to proteo
 # Dependencies
 For the correct work of the method, you need to install the following software:
 * [Clustal Omega](http://www.clustal.org/omega/)
-* [DSSP](https://github.com/PDB-REDO/dssp) (optional, but highly recommended)
 * [UCSF Chimera](https://github.com/insilichem/pychimera/blob/master/docs/install.rst)
+* [DSSP](https://github.com/PDB-REDO/dssp) (optional, but highly recommended)
 
 and the following python libraries:
 
@@ -44,9 +44,9 @@ All calculations are performed using the main script `run.py`. To obtain a full 
 
 * `-c` - chain ID
 
-* `-l` - run DSSP locally
+* `-l` (optional) - run DSSP locally. It is highly recommended to install DSSP locally due to potential issues with the connection to the DSSP server.
 
-* `-v` - generate a visual representation of the 3D structure with color-mapped scores in Chimera format.
+* `-v` (optional) - generate a visual representation of the 3D structure in Chimera with color-mapped scores. 
 
 # Reporting Bugs and Feature Requests
 Please use the [GitHub issue tracker](https://github.com/KazanovLab/ProteolysisStructuralPrediction/issues) to report bugs or suggest features.
