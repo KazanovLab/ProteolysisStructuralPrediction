@@ -9,7 +9,7 @@ import time
 
 ''' Set paths '''
 main_path = os.getcwd()
-StructureSet_path = os.path.join(main_path, "structures")
+StructureSet_path = os.path.join(main_path, "results")
 structure_list = [i for i in os.listdir(StructureSet_path) if '.' not in i]
 
 ''' Set AA code '''
@@ -44,6 +44,9 @@ def get_seqres(structure_file):
         data = file.read()
     
     seqres = [i.split() for i in data.strip('\n').split('\n') if ('SEQRES' == i.split()[0]) and (name_chain == i.split()[2])]
+    if len(seqres) == 0:
+        print(f"ERROR: Check chain in {structure_file}, please! Possibly, this chain doesn't exist!")
+        sys.exit()
     len_sequence = int(seqres[0][3])
     sequence = ''.join([''.join([aminoacid_code[j] if j in aminoacid_code else 'X' for j in i[4:]]) for i in seqres])
     if len_sequence != len(sequence):
@@ -111,7 +114,7 @@ def main():
         
         for structure_file in structure_files:
             structure_name = structure_file.split('/')[-1].split('.')[0]
-            print(f"{num} --- {structure_name}")
+            #print(f"{num} --- {structure_name}")
             num += 1
         
             ''' Get ATOM information '''

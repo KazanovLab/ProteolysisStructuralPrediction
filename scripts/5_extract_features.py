@@ -9,7 +9,7 @@ import time
 
 ''' Set paths '''
 main_path = os.getcwd()
-StructureSet_path = os.path.join(main_path, "structures")
+StructureSet_path = os.path.join(main_path, "results")
 structure_list = [i for i in os.listdir(StructureSet_path) if '.' not in i]
 
 def parse_dssp(dssp_file):
@@ -236,7 +236,7 @@ def main():
         dssp_files = glob.glob(os.path.join(structure_path, '*.dssp'))
         for dssp_file in dssp_files:
             structure_name = dssp_file.split('/')[-1].split('.')[0]
-            print(f"{num} --- {structure_name}")
+            #print(f"{num} --- {structure_name}")
             num += 1
             
             ''' ACC, bp1, bp2 '''

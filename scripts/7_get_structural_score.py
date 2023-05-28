@@ -13,7 +13,7 @@ import argparse
 ''' Set paths ''' 
 main_path = os.getcwd()
 model_path = os.path.join(main_path, "models")
-StructureSet_path = os.path.join(main_path, "structures")
+StructureSet_path = os.path.join(main_path, "results")
 structure_list = [i for i in os.listdir(StructureSet_path) if '.' not in i]
 
 ''' Features '''
@@ -33,7 +33,7 @@ def main():
         feature_files = glob.glob(os.path.join(feature_path, '*_norm.csv'))
         for feature_file in feature_files:
             structure_name = '_'.join(feature_file.split('/')[-1].split('.')[0].split('_')[:-2])
-            print(f"{num} --- {structure_name}")
+            #print(f"{num} --- {structure_name}")
             num += 1
             
             feature_df = pd.read_csv(feature_file, dtype=features)
@@ -47,11 +47,12 @@ def main():
             X_test = feature_df[features.keys()].values
             structural_scores = structural_model.predict_proba(X_test)[:, 1]
                 
-            structural_score_col = f"StrModel_predict"
+            structural_score_col = f"PredictedProbability"
             feature_df[structural_score_col] = structural_scores
             feature_df[structural_score_col] = feature_df[structural_score_col].map(lambda x: round(x, 4))
             
             feature_df.to_csv(os.path.join(score_path, f"{structure_name}_StrProba.csv"), index=False)
+            feature_df[["structure", "chain", "AA", "num_AA", "PredictedProbability"]].to_csv(os.path.join(structure_path, f"{structure_name}_predictions.csv"), index=False)
 
 ''' Launch script '''                
 if __name__ == "__main__":

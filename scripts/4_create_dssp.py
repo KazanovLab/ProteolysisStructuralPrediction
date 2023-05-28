@@ -1,10 +1,12 @@
 ''' Import libraries '''
 import os
+import sys
 import glob
 import time
 import requests
 import json
 import argparse
+from multiprocessing import Process
 
 ''' Terminal '''
 parser = argparse.ArgumentParser()
@@ -13,14 +15,25 @@ args = parser.parse_args()
 
 ''' Set paths '''
 main_path = os.getcwd()
-StructureSet_path = os.path.join(main_path, "structures")
+StructureSet_path = os.path.join(main_path, "results")
 structure_list = [i for i in os.listdir(StructureSet_path) if '.' not in i]
+
+''' Logging '''
+log_file = os.path.join(StructureSet_path, "report.log")
 
 def download_dssp(structure_file):
     dssp_url = 'https://www3.cmbi.umcn.nl/xssp/'
     url_create = '{}api/create/pdb_file/dssp/'.format(dssp_url)
-
-    response_create = requests.post(url_create, files={'file_':open(structure_file, 'rb')})
+    
+    try:
+        response_create = requests.post(url_create, files={'file_':open(structure_file, 'rb')}, timeout=30)
+    except requests.Timeout:
+        print("ERROR: Timeout for response from DSSP server! Please, install DSSP and repeat this step locally!")
+        sys.exit()
+    except requests.ConnectionError:
+        print("ERROR: No connection with DSSP server! Please, repeat later!")
+        sys.exit()
+        
     response_create.raise_for_status
 
     job_id = json.loads(response_create.text)['id']
@@ -28,7 +41,8 @@ def download_dssp(structure_file):
 
     ready = False
     while not ready:
-
+        local_time = time.time()
+        print(int(local_time))
         url_status = '{}/api/status/pdb_file/dssp/{}/'.format(dssp_url, job_id)
         response_status = requests.get(url_status)
         response_status.raise_for_status
@@ -66,7 +80,7 @@ def main():
         structure_files = glob.glob(os.path.join(structure_path, '*_*.pdb')) + glob.glob(os.path.join(structure_path, "AF-*-F1.pdb"))
         for structure_file in structure_files:
             structure_name = structure_file.split('/')[-1].split('.')[0]
-            print(f"{num} --- {structure_name}")
+            #print(f"{num} --- {structure_name}")
             num += 1
             
             if args.locally:
@@ -74,7 +88,7 @@ def main():
                 if not os.path.exists(f"{structure_file.split('.pdb')[0]}.dssp"):
                     uncorrected_dssp_files.append(f"{structure_name}.pdb - error! (locally)")
             else:
-                result = download_dssp(structure_file)
+                result = download_dssp(structure_file)    
                 if result != None:
                     with open(f"{structure_file.split('.')[0]}.dssp", 'w') as file:
                         file.write(result)
@@ -82,8 +96,12 @@ def main():
                     uncorrected_dssp_files.append(f"{structure_name}.pdb --- error! (via server)")
 
     if len(uncorrected_dssp_files) > 0:
-        with open(os.path.join(StructureSet_path, f"UncorrectedDSSPFiles.txt"), 'w') as file:
-            file.write('\n'.join(uncorrected_dssp_files))
+        if os.path.exists(log_file):
+            with open(log_file, 'a') as file:
+                file.write('Uncorrected dssp files\n' + '\n'.join(uncorrected_dssp_files) + '\n')
+        else:
+            with open(log_file, 'w') as file:
+                file.write('Uncorrected dssp files\n' + '\n'.join(uncorrected_dssp_files) + '\n')
 
 ''' Launch script '''
 if __name__ == "__main__":
