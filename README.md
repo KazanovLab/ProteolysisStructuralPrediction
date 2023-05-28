@@ -56,6 +56,7 @@ After completing the calculations, the main script creates a directory named `re
 
 * `features` - folder containing structural features before and after normalization.
 
+Along with the `results` folder, the root directory also contains system folders `models` and `scripts`, which should not be removed or edited.
  
 
 # Reporting Bugs and Feature Requests
