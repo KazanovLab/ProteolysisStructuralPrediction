@@ -25,16 +25,43 @@ if not os.path.exists(StructureSet_path):
 
 ''' Logging '''    
 log_file = os.path.join(StructureSet_path, "report.log")
+
 ''' List of structures '''   
 if ((not (args.input is None)) and (not os.path.isfile(args.input))) and (not (args.chain is None)) and (args.file is None):
     structure_list = [[args.input, args.chain]]
 elif ((not (args.input is None)) and os.path.isfile(args.input)) and (args.chain is None) and (args.file is None):
-    input_data = pd.read_csv(args.input, names=["structure", "chain"], dtype={"structure":str, "chain":str})
+    with open(args.input, 'r') as file:
+        line = file.readline()
+        if ',' in line:
+            sep_value = ','
+        elif ';' in line:
+            sep_value = ';'
+        elif '\t' in line:
+            sep_value = '\t'
+        elif (' ' in line) and (len(line.split(' ')) == 2):
+            sep_value = ' '
+        else:
+            print("ERROR: Unrecognized separator value in table!\nPlease, use ',', ';', '\\t', ' ' as separator value.\n")
+            sys.exit()
+    input_data = pd.read_csv(args.input, names=["structure", "chain"], sep=sep_value, dtype={"structure":str, "chain":str})
     structure_list = input_data.values
 elif (args.input is None) and (not (args.chain is None)) and ((not (args.file is None)) and ('.pdb' in args.file)):
     structure_list = [[args.file, args.chain]]
 elif (args.input is None) and (args.chain is None) and ((not (args.file is None)) and ('.pdb' not in args.file) and os.path.isfile(args.file)):
-    input_data = pd.read_csv(args.file, names=["structure", "chain"], dtype={"structure":str, "chain":str})
+    with open(args.file, 'r') as file:
+        line = file.readline()
+        if ',' in line:
+            sep_value = ','
+        elif ';' in line:
+            sep_value = ';'
+        elif '\t' in line:
+            sep_value = '\t'
+        elif (' ' in line) and (len(line.split(' ')) == 2):
+            sep_value = ' '
+        else:
+            print("ERROR: Unrecognized separator value in table!\nPlease, use ',', ';', '\t', ' ' as separator value.")
+            sys.exit()
+    input_data = pd.read_csv(args.file, names=["structure", "chain"], sep=sep_value, dtype={"structure":str, "chain":str})
     structure_list = input_data.values
 #else:
 #    print("ERROR: Possibly, your input of PDB ID (-i), chain (-c) or PDB file (-f) is uncorrected! Check with templates:\n1: -i 4GAW -c A\n2: -i /dir1/dir2/structures.txt\n3: -f /dir1/dir2/name.pdb -c A\n4: -f /dir1/dir2/pdb_structures.txt\n")
@@ -75,7 +102,6 @@ def main():
     uncorrected_structure_files = []
     for num, (structure, chain) in enumerate(structure_list):
         #print(f"{num + 1} --- {structure}")
-        print(num, structure, chain)
         
         if os.path.isfile(structure) and ('.pdb' in structure):
             structure_file = os.path.basename(structure)
