@@ -27,10 +27,16 @@ def main():
             process1 = subprocess.run(["python", f"{script_path}/1_download_structure_with_sep_chain.py", f"-i={args.input}", f"-c={args.chain}"], capture_output=True, text=True, check=True)
         elif ((not (args.input is None)) and os.path.isfile(args.input)) and (args.chain is None) and (args.file is None):
             process1 = subprocess.run(["python", f"{script_path}/1_download_structure_with_sep_chain.py", f"-i={args.input}"], capture_output=True, text=True, check=True)
+            if 'ERROR' in process1.stdout:
+                print(process1.stdout)
+                sys.exit()
         elif (args.input is None) and (not (args.chain is None)) and ((not (args.file is None)) and ('.pdb' in args.file)):
             process1 = subprocess.run(["python", f"{script_path}/1_download_structure_with_sep_chain.py", f"-f={args.file}", f"-c={args.chain}"], capture_output=True, text=True, check=True)
         elif (args.input is None) and (args.chain is None) and ((not (args.file is None)) and ('.pdb' not in args.file) and os.path.isfile(args.file)):
             process1 = subprocess.run(["python", f"{script_path}/1_download_structure_with_sep_chain.py", f"-f={args.file}"], capture_output=True, text=True, check=True)
+            if 'ERROR' in process1.stdout:
+                print(process1.stdout)
+                sys.exit()
         else:
             print("ERROR: Possibly, your input of PDB ID (-i), chain (-c) or PDB file (-f) is uncorrected! Check with templates:\n1: -i 4GAW -c A\n2: -i /dir1/dir2/structures.txt\n3: -f /dir1/dir2/name.pdb -c A\n4: -f /dir1/dir2/pdb_structures.txt\n")
             sys.exit()
@@ -43,7 +49,7 @@ def main():
         print("\n******** WARNING ********\nNo structures are downloaded!\n")
         sys.exit()
     print("######## Step 1 -- WELL DONE! ########\n")
-    
+
     print("######## Step 2 -- Preprocessing  ########")
     print("######## Step 2.1. -- Ligand removing ########")
     try:
@@ -52,7 +58,7 @@ def main():
         print()
         print(e.stderr)
         sys.exit()
-    
+
     print("######## Step 2.2. -- PDB-file parsing ########")
     try:
         process3 = subprocess.run(["python", f"{script_path}/3_parse_pdb.py"], capture_output=True, text=True, check=True)
