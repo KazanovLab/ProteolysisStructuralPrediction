@@ -1,5 +1,4 @@
 from chimera import runCommand as run
-
 import os
 import glob
 
