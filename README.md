@@ -24,13 +24,13 @@ For batch execution of the same command on multiple structures, you can submit a
 
 ```python run.py -i "PDBID_ChainID_list.txt" -l -v```
 
-To apply the method for locally saved PDF file or multiple PDB files in folder, you should use `-f` option:
+To apply the method for locally saved PDB file, you should use `-f` option:
 
 ```python run.py -f 4GAW.pdb -c A -l -v```
 
 The batch option is also available for locally saved PDB files listed in a two-column text file, with the first column representing the path to the PDB file and the second column representing the Chain ID.
 
-```python run.py -i "PDBpath_ChainID_list.txt" -l -v```
+```python run.py -f "PDBpath_ChainID_list.txt" -l -v```
 
 The calculation results are accessible in the `results` directory within a folder named after the corresponding PDB ID. The calculated scores in a concise format can be obtained in the file `<PDBID_ChainID>_predictions.txt`.
 
