@@ -54,6 +54,10 @@ def main():
     print("######## Step 2.1. -- Ligand removing ########")
     try:
         process2 = subprocess.run(["chimera", "--nogui", f"--script={script_path}/2_del_ligands_pyv2.py"], capture_output=True, text=True, check=True)
+        if "Error while processing" in process2.stderr:
+            error_index = process2.stderr.find("Error while processing")
+            print(process2.stderr[error_index:])
+            sys.exit()
     except subprocess.CalledProcessError as e:
         print()
         print(e.stderr)
@@ -117,6 +121,10 @@ def main():
         print("######## Step 7 -- Visualising scores ########")
         try:
             process8 = subprocess.run(["chimera", "--nogui", f"--script={script_path}/map_scores_pyv2.py"], capture_output=True, text=True, check=True)
+            if "Error while processing" in process8.stderr:
+                error_index = process8.stderr.find("Error while processing")
+                print(process8.stderr[error_index:])
+                sys.exit()
             print("######## Step 7 -- WELL DONE! ########\n")
         except subprocess.CalledProcessError as e:
             print()
