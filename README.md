@@ -46,7 +46,7 @@ All calculations are performed using the main script `run.py`. To obtain a full 
 
 * `-l` (optional) - run DSSP locally. It is strongly recommended to install DSSP locally due to potential issues with the connection to the DSSP server.
 
-* `-v` (optional) - generate a visual representation of the 3D structure in Chimera with color-mapped scores. The colors reflecting the scores of structural susceptibility to proteolysis are distributed from blue (low susceptibility) through red (moderate susceptibility) to yellow (high susceptibility). The visual representation file in Chimera format is placed in the scores folder.
+* `-v` (optional) - generate a visual representation of the 3D structure in Chimera with color-mapped scores. The colors reflecting the scores of structural susceptibility to proteolysis are distributed from blue (low susceptibility) through red (moderate susceptibility) to yellow (high susceptibility). The visual representation file in Chimera format is placed in the `scores` folder.
 
 After completing the calculations, the main script creates a directory named `results` if it does not already exist, and places the final and intermediate output files under the folder with the PDB ID name:
 
