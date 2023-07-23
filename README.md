@@ -63,4 +63,4 @@ Along with the `results` folder, the root directory also contains system folders
 Please use the [GitHub issue tracker](https://github.com/KazanovLab/ProteolysisStructuralPrediction/issues) to report bugs or suggest features.
 
 # Citing
-_Evgenii V. Matveev, Vyacheslav V. Safronov, Gennady V. Ponomarev and Marat D. Kazanov. "Predicting structural susceptibility of proteins to proteolytic processing". (submitted)_
+Matveev, E.V.; Safronov, V.V.; Ponomarev, G.V.; Kazanov, M.D. Predicting Structural Susceptibility of Proteins to Proteolytic Processing. Int. J. Mol. Sci. 2023, 24, 10761. https://doi.org/10.3390/ijms241310761
