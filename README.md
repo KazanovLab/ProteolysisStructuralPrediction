@@ -49,7 +49,7 @@ All calculations are performed using the main script `run.py`. To obtain a full 
 
 * `-v` (optional) - generate a visual representation of the 3D structure in Chimera with color-mapped scores. The colors reflecting the scores of structural susceptibility to proteolysis are distributed from blue (low susceptibility) through red (moderate susceptibility) to yellow (high susceptibility). The visual representation file in Chimera format is placed in the `scores` folder.
 
-After completing the calculations, the main script creates a directory named `results` if it does not already exist, and places the final and intermediate output files under the folder with the PDB ID name:
+After completing the calculations, the main script creates a directory named `results` if it does not already exist, and places the final and intermediate output files under the folder with the structure ID name:
 
 * `<Structure_ID>.predictions.txt` - the calculated scores of structural susceptibility to proteolysis assigned to the P1 site (Schechter-Berger notation) in a file with a concise format.
 
