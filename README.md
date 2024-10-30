@@ -24,7 +24,7 @@ To calculate scores for a model 3D structure from AlphaFoldDB (e.g. AF-P00257-F1
 
 ```python run.py -i AF-P00257-F1 -l -v```
 
-To apply the method for locally saved PDB file of experimental of model structure, also use `-i` option:
+To apply the method for locally saved PDB file of experimental or model structure, also use `-i` option:
 
 ```python run.py -i /dir1/dir2/4GAW.pdb -c A -l -v```
 ```python run.py -i /dir1/dir2/AF-P00257-F1.pdb -l -v```
