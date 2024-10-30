@@ -35,7 +35,7 @@ For batch execution of the same command on multiple structures (including mix se
 
 Please, see `input_examples` directory for better understanding.
 
-The calculation results are accessible in the `results` directory within a folder named after the corresponding structure ID. The calculated scores in a concise format can be obtained in the file `<Structure_ID>_predictions.txt`.
+The calculation results are accessible in the `results` directory within a folder named after the corresponding structure ID. The calculated scores in a concise format can be obtained in the file `<Structure_ID>.predictions.txt`.
 
 # User manual
 
@@ -51,7 +51,7 @@ All calculations are performed using the main script `run.py`. To obtain a full 
 
 After completing the calculations, the main script creates a directory named `results` if it does not already exist, and places the final and intermediate output files under the folder with the PDB ID name:
 
-* `<Structure_ID>_predictions.txt` - the calculated scores of structural susceptibility to proteolysis assigned to the P1 site (Schechter-Berger notation) in a file with a concise format.
+* `<Structure_ID>.predictions.txt` - the calculated scores of structural susceptibility to proteolysis assigned to the P1 site (Schechter-Berger notation) in a file with a concise format.
 
 * `scores` - folder containing detailed output of the method, including the predicted structural susceptibility scores and all associated structural features. If visualization option was enabled, this folder will also contain a Chimera session file.
 
