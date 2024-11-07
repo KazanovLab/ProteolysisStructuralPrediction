@@ -33,7 +33,7 @@ To apply the method for locally saved PDB-file of a model structure, also use `-
 
 ```python run.py -m /dir1/dir2/my_model_protein.pdb -l -v```
 
-For batch execution of the same command on multiple structures (including mix set - experimental and model structures, ID of structures and locally saved PDB-files), you can submit a text file with a list of structures and chains, with each entry in two columns (the ID and the protein chain) per line (It's recommended to separate values by comma). Specify '-' for AlphaFold structure chain value. Importantly, in this option the name of your model structure ID must match a template as "AF-{UniProt_ID}-F1", and the name of your model structure PDB-file must start with "AF-{your_name}.pdb" for correct processing by the models:
+For batch execution of the same command on multiple structures (including mix set - experimental and model structures, ID of structures and locally saved PDB-files), you can submit a text file with a list of structures and chains, with each entry in two columns (the ID and the protein chain) per line (It's recommended to separate values by comma). Specify '-' for AlphaFold structure chain value. Importantly, in this option the name of your model structure ID must match a template as "AF-{UniProt_ID}-F1", and the name of your model structure PDB-file must start with "AF-{your_name}.pdb" for correct processing:
 
 ```python run.py -b "/dir1/dir2/my_structures.txt" -l -v```
 
