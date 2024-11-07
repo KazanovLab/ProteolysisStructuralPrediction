@@ -75,21 +75,22 @@ def main():
     num = 1
     for structure in structure_list:
         structure_path = os.path.join(StructureSet_path, structure)
+        preprocessing_path = os.path.join(structure_path, "preprocessing")
         
-        structure_files = glob.glob(os.path.join(structure_path, '*.del.pdb'))
+        structure_files = glob.glob(os.path.join(preprocessing_path, '*.del.pdb'))
         for structure_file in structure_files:
-            structure_name = structure_file.split('/')[-1].split('.')[0]
+            structure_name = structure_file.split('/')[-1].split('.del.pdb')[0]
             #print(f"{num} --- {structure_name}")
             num += 1
             
             if args.locally:
                 apply_dssp(structure_file)
-                if not os.path.exists(os.path.join(structure_path, f"{structure_name}.dssp")):
+                if not os.path.exists(os.path.join(preprocessing_path, f"{structure_name}.dssp")):
                     uncorrected_dssp_files.append(f"{structure_name}\tlocal problem")
             else:
                 result = download_dssp(structure_file)    
                 if result != None:
-                    with open(os.path.join(structure_path, f"{structure_name}.dssp"), 'w') as file:
+                    with open(os.path.join(preprocessing_path, f"{structure_name}.dssp"), 'w') as file:
                         file.write(result)
                 else:
                     uncorrected_dssp_files.append(f"{structure_name}\tserver problem")

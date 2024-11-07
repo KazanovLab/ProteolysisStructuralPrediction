@@ -36,9 +36,9 @@ aminoacid_code = {'GLY':'G',
                   }
 
 def get_seqres(structure_file):
-    path = os.path.split(structure_file)[0]
-    name_structure = structure_file.split('/')[-1].split('.')[0].split('_')[0]
-    name_chain = structure_file.split('/')[-1].split('.')[0].split('_')[1]
+    path = os.path.split(os.path.split(structure_file)[0])[0]
+    name_structure = '_'.join(structure_file.split('/')[-1].split('.del.pdb')[0].split('_')[:-1])
+    name_chain = structure_file.split('/')[-1].split('.del.pdb')[0].split('_')[-1]
     
     with open(os.path.join(path, f"{name_structure}.pdb")) as file:
         data = file.read()
@@ -110,10 +110,11 @@ def main():
     for structure in structure_list:
         
         structure_path = os.path.join(StructureSet_path, structure)
-        structure_files = glob.glob(os.path.join(structure_path, "*.del.pdb"))
+        preprocessing_path = os.path.join(structure_path, "preprocessing")
+        structure_files = glob.glob(os.path.join(preprocessing_path, "*.del.pdb"))
         
         for structure_file in structure_files:
-            structure_name = structure_file.split('/')[-1].split('.')[0]
+            structure_name = structure_file.split('/')[-1].split('.del.pdb')[0]
             #print(f"{num} --- {structure_name}")
             num += 1
         
@@ -121,13 +122,13 @@ def main():
             atom_data = pd.DataFrame(parse_atom(structure_file))
             atom_sequence = ''.join(atom_data["ATOM_AA"].tolist())
         
-            if 'AF-' not in structure:
+            if 'AF-' not in structure_name:
                 ''' Get SEQRES information '''
                 seqres_sequence, chain = get_seqres(structure_file)
             else:
                 seqres_sequence, chain = atom_sequence, atom_data['chain'].unique()[0]
             
-            sequence_path = os.path.join(structure_path, "sequence")
+            sequence_path = os.path.join(structure_path, "alignments")
             if not os.path.exists(sequence_path):
                 os.mkdir(sequence_path)
             feature_path = os.path.join(structure_path, "features")

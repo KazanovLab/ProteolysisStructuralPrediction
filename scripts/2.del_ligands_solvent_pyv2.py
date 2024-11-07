@@ -10,7 +10,8 @@ structure_list = [i for i in os.listdir(StructureSet_path) if '.' not in i]
 c = 0
 for structure in sorted(structure_list):  
     structure_path = os.path.join(StructureSet_path, structure)
-    structure_files = glob.glob(os.path.join(structure_path, "*_*.pdb")) + glob.glob(os.path.join(structure_path, "AF-*.pdb"))
+    preprocessing_path = os.path.join(structure_path, "preprocessing")
+    structure_files = glob.glob(os.path.join(preprocessing_path, "*.pdb"))
     
     for structure_file in structure_files:
         c += 1

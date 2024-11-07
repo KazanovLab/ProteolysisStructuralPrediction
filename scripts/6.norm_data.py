@@ -33,7 +33,7 @@ def main():
         
         feature_files = glob.glob(os.path.join(feature_path, '*.final.csv'))
         for feature_file in feature_files:
-            structure_name = feature_file.split('/')[-1].split('.')[0]
+            structure_name = feature_file.split('/')[-1].split('.final.csv')[0]
             #print(f"{num} --- {structure_name}")
             num += 1
             
@@ -79,7 +79,7 @@ def main():
                 feature_df["SS_H"] = 0
             
             ''' Save results '''
-            feature_df.to_csv(os.path.join(feature_path, feature_file.split('.csv')[0] + '.norm.csv'), index=False)
+            feature_df.to_csv(os.path.join(feature_path, feature_file.split('.final.csv')[0] + '.norm.csv'), index=False)
     
     if len(warnings) > 0:
         if os.path.exists(log_file):

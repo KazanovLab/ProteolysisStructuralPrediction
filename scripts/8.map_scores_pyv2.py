@@ -14,13 +14,14 @@ def main():
     num = 1
     for structure in structure_list:        
         structure_path = os.path.join(StructureSet_path, structure)
+        preprocessing_path = os.path.join(structure_path, "preprocessing")
         score_path = os.path.join(structure_path, "scores")
         
-        score_files = glob.glob(os.path.join(score_path, '*.csv'))
+        score_files = glob.glob(os.path.join(score_path, '*.StrProba.csv'))
         if len(score_files) == 0: continue
         
         for score_file in score_files:
-            structure_name = score_file.split('/')[-1].split('.')[0]
+            structure_name = score_file.split('/')[-1].split('.StrProba.csv')[0]
             #print "{0} --- {1}".format(num, structure_name)
             num += 1
             
@@ -38,7 +39,7 @@ def main():
                 file.write("attribute: Structural_score\nmatch mode: 1-to-1\nrecipient: residues\n" + '\n'.join(score_df[score_column + "_attribute"].tolist()))
             ''' Map score '''
             run("del")
-            run("open {0}".format(os.path.join(structure_path, structure_chain + '.pdb')))
+            run("open {0}".format(os.path.join(preprocessing_path, structure_chain + '.pdb')))
             run("defattr {}".format(attribute_file))
             run("rangecolor Structural_score 0 blue 0.5 red 1 yellow")
             run("save {}".format(save_file))

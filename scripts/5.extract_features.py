@@ -230,12 +230,13 @@ def main():
     num = 1
     for structure in structure_list:        
         structure_path = os.path.join(StructureSet_path, structure)
+        preprocessing_path = os.path.join(structure_path, "preprocessing")
         feature_path = os.path.join(structure_path, "features")
-        sequence_path = os.path.join(structure_path, "sequence")
+        sequence_path = os.path.join(structure_path, "alignments")
         
-        dssp_files = glob.glob(os.path.join(structure_path, '*.dssp'))
+        dssp_files = glob.glob(os.path.join(preprocessing_path, '*.dssp'))
         for dssp_file in dssp_files:
-            structure_name = dssp_file.split('/')[-1].split('.')[0]
+            structure_name = dssp_file.split('/')[-1].split('.dssp')[0]
             #print(f"{num} --- {structure_name}")
             num += 1
             
