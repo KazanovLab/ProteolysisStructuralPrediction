@@ -1,4 +1,0 @@
-1ABE,A
-AF-P00257-F1,-
-/your_path/4GAW.pdb,A
-/your_path/AF-Q5VSL9-F1.pdb,-
