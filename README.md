@@ -49,9 +49,9 @@ All calculations are performed using the main script `run.py`. To obtain a full 
 
 * `-m` - the UniProt ID of a protein for downloading model structure from AlphaFoldDB database, or a full path to the model structure file with '.pdb' extension. For example, 1) -m 'P00257' 2) -m '/dir1/dir2/my_model_structure.pdb'. Also see directory 'input_examples' for a better understanding.
 
-* `-b` - a batch option to generate predictions for a set of structures. A full path to the TXT-file with a table where the first column is the structure ID (The name of your AlphaFold structure file must be necessarily started with 'AF-' and the name of your AlphaFold structure ID must match a template as "AF-{UniProt_ID}_F1"), and the second is the name of the chain (You need specify '-' for AlphaFold structure). The value separator should be a comma. For example, 1) -b '/dir1/dir2/structures.txt'. Also see directory 'input_examples' for a better understanding.
+* `-b` - a batch option to generate predictions for a set of structures. A full path to the TXT-file with a table where the first column is the structure ID (The name of your AlphaFold structure file must be necessarily started with 'AF-' and the name of your AlphaFold structure ID must match a template as "AF-{UniProt_ID}_F1"), and the second is the name of the protein chain (You need specify '-' for AlphaFold structure). The value separator should be a comma. For example, 1) -b '/dir1/dir2/structures.txt'. Also see directory 'input_examples' for a better understanding.
 
-* `-c` - the name of the chain (case-sensitive), only used with '-s' parameter for PDB ID or PDB structure file. For example, 'A'."
+* `-c` - the name of the protein chain (case-sensitive), only used with '-s' parameter for PDB ID or PDB structure file. For example, 'A'."
 
 * `-l` (optional) - run DSSP program locally. It is strongly recommended to install DSSP locally due to potential issues with the connection to the DSSP server.
 
