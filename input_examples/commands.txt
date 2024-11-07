@@ -1,0 +1,7 @@
+1) python run.py -s 4gaw -c A -l -v
+2) python run.py -s my_experimental_protein.pdb -c A -l -v
+3) python run.py -m P00156 -l -v
+4) python run.py -m P00127.pdb -l -v
+5) python run.py -m AF-Q5VSL9-F1.pdb -l -v
+6) python run.py -b structure_mixed1.txt -l -v
+7) python run.py -b structure_mixed2.txt -l -v
