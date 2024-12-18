@@ -1,0 +1,4 @@
+1abe,A
+AF-P00257-F1,-
+/your_path/my_experimental_protein.pdb,B
+/your_path/AF-my_model_protein.pdb,-
