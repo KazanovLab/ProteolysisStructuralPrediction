@@ -67,7 +67,7 @@ def download_dssp(structure_file):
         return result
 
 def apply_dssp(structure_file):
-    exit_code = os.system(f"mkdssp -i {structure_file} -o {structure_file.split('.del.pdb')[0]}.dssp")
+    exit_code = os.system(f"mkdssp {structure_file} {structure_file.split('.del.pdb')[0]}.dssp")
     sys.exit(exit_code >> 8)
 
 def main():

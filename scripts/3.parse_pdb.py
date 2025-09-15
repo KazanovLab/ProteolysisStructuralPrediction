@@ -150,7 +150,7 @@ def main():
                       --outfile={output_CW_file} \
                       --outfmt=fa
                       ''')
-                
+            
             ''' Mapping '''
             map_data = map_sequence(output_CW_file)
             
